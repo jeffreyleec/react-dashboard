@@ -126,30 +126,12 @@ export const tokens = (mode) => ({
 
 
 // mui theme settings 
-export const themeSettings = () => {
+export const themeSettings = (mode) => {
     const colors = tokens(mode)
-
     return {
         palette: {
             mode: mode, ...(mode === 'dark'
                 ? {
-                    primary: {
-                        main: colors.primary[100],
-                    },
-                    secondary: {
-                        main: colors.greenAccent[500],
-                    },
-                    neutral: {
-                        dark: colors.grey[700],
-                        main: colors.grey[500],
-                        light: colors.grey[100]
-                    },
-                    background: {
-                        default: "#fcfcfc",
-                    }
-
-                } :
-                {
                     primary: {
                         main: colors.primary[500],
                     },
@@ -163,6 +145,24 @@ export const themeSettings = () => {
                     },
                     background: {
                         default: colors.primary[500],
+
+                    }
+
+                } :
+                {
+                    primary: {
+                        main: colors.primary[100],
+                    },
+                    secondary: {
+                        main: colors.greenAccent[500],
+                    },
+                    neutral: {
+                        dark: colors.grey[700],
+                        main: colors.grey[500],
+                        light: colors.grey[100]
+                    },
+                    background: {
+                        default: "#fcfcfc",
                     }
 
                 })
@@ -208,7 +208,7 @@ export const ColorModeContext = createContext({
 export const useMode = () => {
     const [mode, setMode] = useState("dark")
 
-    const cocdeMode = useMemo(
+    const colorMode = useMemo(
         () => ({
             toggleColorMode: () =>
                 setMode((prev) => prev === 'light' ? 'dark' : 'light')
